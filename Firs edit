@@ -1,0 +1,139 @@
+#include<iostream>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+#include <fstream>
+#include <cstdlib>
+using namespace std;
+
+class Person;
+class Regulate;
+class Symptoms;
+class Calc;
+
+// Class declarations and initializations
+class Person{
+protected:
+char firstname[30],lastname[30],gender[10],filename[20];
+char id[20];
+int  age;
+public:
+    Person(){
+    cout<<"Enter your id :(\'Note: It can't be changed later.\') :";
+    cin>>filename;
+    strcat(filename,".txt");
+    ofstream File(filename);
+    get_details();
+    set_details();
+    }
+    void get_details();
+    void set_details();
+};
+
+void Person :: get_details(){
+cout<<"Enter firstname : "; cin>>firstname;
+cout<<"Enter lastname : "; cin>>lastname;
+cout<<"Enter gender : "; cin>>gender;
+}
+
+void Person :: set_details(){
+ofstream File;
+    File.open(filename);
+        if(File.is_open()){
+
+        File<<firstname<<endl;
+        File<<lastname<<endl;
+        File<<gender<<endl;
+        }
+}
+
+class Regulate : virtual public Person{
+protected:
+    float bp,temperature,pulse_rate;
+public:
+    Regulate(){
+    get_health();
+    write_health_to_file();
+    }
+    void get_health();
+    void write_health_to_file();
+};
+
+void Regulate :: get_health(){
+cout<<"Enter your blood pressure : "; cin>>bp;
+cout<<"Enter your temperature : "; cin>>temperature;
+cout<<"Enter your pulse_rate : "; cin>>pulse_rate;
+}
+void Regulate :: write_health_to_file(){
+     ofstream File(filename, ios::out | ios::app);
+        if( File.is_open() ) {
+        File<<bp<<endl;
+        File<<temperature<<endl;
+        File<<pulse_rate<<endl;
+        }
+};
+
+class Symptoms : virtual public Person{
+protected:
+    char dry_cough[5],running_nose[5],short_breath[5];
+public:
+    Symptoms(){
+    get_symp();
+    write_symp_to_file();
+    }
+    void get_symp();
+    void write_symp_to_file();
+};
+
+void Symptoms :: get_symp(){
+cout<<"Enter dry_cough : "; cin>>dry_cough;
+cout<<"Enter running_nose : "; cin>>running_nose;
+cout<<"Enter short_breath : "; cin>>short_breath;
+}
+
+void Symptoms :: write_symp_to_file(){
+    ofstream File;
+    File.open(filename, ios::out | ios::app);
+        if(File.is_open()){
+        File<<dry_cough<<endl;
+        File<<running_nose<<endl;
+        File<<short_breath<<endl;
+        }
+}
+
+class Calc : public Regulate , public Symptoms{
+public:
+    Calc(){
+    }
+    void get_data();
+    void addto_file();
+};
+
+int main(){
+int cnt=0;
+while(1){
+system("cls");
+cout<<"Choose an option :"<<endl;
+cout<<"1.Create a new record."<<endl;
+cout<<"2.Update a record ( for the system )."<<endl;
+cout<<"3.View a record.."<<endl;
+cout<<"4.Delete record."<<endl;
+cout<<"5.Exit"<<endl;
+int n=0;
+cin>>n;
+switch(n){
+case 1:{
+        Calc obj;
+        break;
+        }
+case 2: break;
+case 3: break;
+case 4: break;
+case 5: return 0;
+}
+cout<<"\nPress any key .."<<endl;
+getch();
+}
+
+return 0;
+}
