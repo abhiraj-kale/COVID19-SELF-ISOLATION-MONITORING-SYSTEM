@@ -31,9 +31,9 @@ public:
 };
 
 void Person :: get_details(){
-cout<<"Enter firstname : "; cin>>firstname;
-cout<<"Enter lastname : "; cin>>lastname;
-cout<<"Enter gender : "; cin>>gender;
+cout<<"Enter firstname : "; cin>>firstname; firstname[0]=toupper(firstname[0]);
+cout<<"Enter lastname : "; cin>>lastname;   lastname[0]= toupper(lastname[0]);
+cout<<"Enter gender : "; cin>>gender;       gender[0]= toupper(gender[0]);
 }
 
 void Person :: set_details(){
@@ -58,7 +58,6 @@ public:
     void get_health();
     void write_health_to_file();
 };
-
 void Regulate :: get_health(){
 cout<<"Enter blood pressure normal(120-140): "; cin>>bp;
 cout<<"Enter temperature nor(98.6-99.9): "; cin>>temperature;
