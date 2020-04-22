@@ -23,8 +23,8 @@ int  age;
 public:
     char time[20],filename[20];int Count_Day=1;
     Person(){
-    cout<<"Enter your id :(\'Note: It can't be changed later.\') :";
-    cin>>filename;
+    cout << "Enter your id :(\'Note: It can't be changed later.\') :";
+    cin >> filename;
     strcpy(id,filename);
     strcat(filename,".txt");
     ofstream File(filename);
@@ -121,6 +121,9 @@ public:
     int turn=0;int n=0;
     Calc(){
     cout<<"\nRecord created."<<endl;
+    }
+    ~Calc(){
+    cout<<"Destructor called ~ Object destroyed."<<endl;
     }
     void addto_file();
     void show_details();
@@ -357,7 +360,7 @@ case 3: cout << "Press\n1.See individual record.\n2.See critical record.\n3.Peop
 
 case 4: { //
             try{
-                cout<<" Enter the number of the record you want to delete : ";
+                cout<<"Enter the number of the record you want to delete : ";
                 cin >>no;
                 if(no<1 || no>cnt)
                 {
@@ -388,10 +391,10 @@ case 4: { //
         }
 case 5: return 0;
 }
+
 cout<<"\nPress any key .."<<endl;
 getch();
 }
 
 return 0;
 }
-
